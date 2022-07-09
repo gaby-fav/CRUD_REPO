@@ -1,7 +1,6 @@
 # CONTROLADOR
 # En carpeta templates va la vista
 
-from time import time
 from flask import Flask, request
 from flask import render_template, request
 from flaskext.mysql import MySQL
@@ -21,13 +20,15 @@ mysql.init_app(app)
 # enrutamientos
 @app.route('/')
 def index():
-    sql = "INSERT INTO `empleados` (`id`, `nombre`, `correo`, `foto`) VALUES (NULL, 'DATO DE PRUEBA 2', 'CORREOPRUEBA2@GMAIL.COM', 'FOTO2.JPG');"
+    sql = "SELECT * FROM `empleados`;"
     conn= mysql.connect()
     cursor=conn.cursor()
-    cursor.execute(sql)
+    cursor.execute(sql) 
+    empleados = cursor.fetchall() #trae todo y lo mete en una tupla
+    print(empleados)
     conn.commit()
 
-    return render_template('empleados/index.html')  #carga el template
+    return render_template('empleados/index.html', empleados = empleados)  #carga el template
 
 @app.route('/create')
 def create():
