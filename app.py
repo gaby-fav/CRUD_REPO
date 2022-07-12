@@ -1,7 +1,7 @@
 # CONTROLADOR
 # En carpeta templates va la vista
 
-from flask import Flask, request
+from flask import Flask, redirect, request
 from flask import render_template, request
 from flaskext.mysql import MySQL
 from datetime import datetime
@@ -55,6 +55,16 @@ def storage():
     conn.commit()
 
     return render_template('empleados/index.html')
+
+@app.route("/delete/<int:id>")
+def delete(id):
+    conn= mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("DELETE FROM empleados WHERE id=%s" , (id)) 
+    conn.commit()
+
+    return redirect('/')
+
 
 if __name__=='__main__':
     app.run(debug=True)

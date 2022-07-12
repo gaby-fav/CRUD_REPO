@@ -25,7 +25,9 @@
                     <td scope="row">{{empleado[3]}}</td>
                     <td scope="row">{{empleado[1]}}</td>
                     <td scope="row">{{empleado[2]}}</td>
-                    <td scope="row">Editar | Eliminar</td>
+                    <td scope="row">Editar | 
+                        <a href="/delete/{{empleado[0]}}">Eliminar</a>
+                    </td>
                 </tr>
                 {% endfor %}          
             </tbody>
