@@ -1,3 +1,5 @@
+{% include 'header.html' %}
+
 {% for empleado in empleados %}
 
 <form method="post" action="/update" enctype="multipart/form-data">
@@ -16,9 +18,11 @@
     <input type="file"  name="txtFoto" id="txtFoto">
     <br>
 
-    <input type="submit" value="Agregar">
+    <input type="submit" value="Editar">
     
 </form>
 
    
-{% endfor %}          
+{% endfor %}    
+
+{% include 'footer.html' %}
